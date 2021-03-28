@@ -25,6 +25,17 @@ const getAllBlogs = async () => {
 
 const createBlog = async (newBlog) => {
   const request = await axios.post(baseUrl, newBlog, getConfig());
+  return request.data;
+};
+
+const likeBlog = async (blog) => {
+  const request = await axios.put(`${baseUrl}/${blog.id}`);
+  console.log(request.data);
+  return request.data;
+};
+
+const deleteBlog = async (blog) => {
+  const request = await axios.delete(`${baseUrl}/${blog.id}`, getConfig());
   console.log("request data:", request.data);
   return request.data;
 };
@@ -33,4 +44,6 @@ export default {
   getAllBlogs,
   createBlog,
   setToken,
+  likeBlog,
+  deleteBlog,
 };
